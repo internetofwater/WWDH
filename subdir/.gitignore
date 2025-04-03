@@ -1,0 +1,15 @@
+
+*.egg-info
+
+local.openapi.yml
+
+.egg-info
+
+__pycache__/
+
+# debugging test file
+test.json
+
+.coverage
+coverage.xml
+htmlcov/

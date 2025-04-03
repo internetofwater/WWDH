@@ -1,0 +1,23 @@
+# Copyright 2025 Lincoln Institute of Land Policy
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "ontology"
+version = "0.1.0"
+description = "ogc api process for resolving an ontology to its underlying terms in multiple collections"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ontology"]
+
+[tool.hatch.metadata]
+allow-direct-references = true

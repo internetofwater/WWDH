@@ -1,0 +1,1 @@
+This folder holds all the code for proxying forecasts from the awdb REST API. This uses the same base url as snotel but instead uses the forecasts endpoint https://wcc.sc.egov.usda.gov/awdbRestApi/swagger-ui/index.html#/Forecast/getForecasts

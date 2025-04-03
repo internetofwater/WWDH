@@ -1,0 +1,84 @@
+# Copyright 2025 Lincoln Institute of Land Policy
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "iodh_integrations"
+version = "0.1.0"
+description = "Mappings from various hydrological data sources to a standardized OGC EDR API format"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.11.13",
+    "covjson-pydantic>=0.5.0",
+    "jsonpatch>=1.33",
+    "pytest>=8.3.4",
+    "redis>=5.2.1",
+    "starlette>=0.46.0",
+    "uvicorn>=0.34.0",
+    "geojson-pydantic>=1.2.0",
+    "opentelemetry-instrumentation-aiohttp-client>=0.51b0",
+    "opentelemetry-sdk>=1.30.0",
+    "opentelemetry-exporter-otlp>=1.30.0",
+    "orjson>=3.10.15",
+    "pygeoapi @ git+https://github.com/geopython/pygeoapi.git",
+    "pytest-cov>=6.0.0",
+    "radon>=6.0.1",
+    "msgspec>=0.19.0",
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+
+keywords = [
+    "cgs",
+    "pygeoapi",
+    "rise",
+    "snowtel",
+    "hydrology"
+]
+
+[dependency-groups]
+dev = [
+    "packages>=0.1.0",
+    "pyright>=1.1.397",
+    "pytest-asyncio>=0.25.3",
+    "pytest-xdist>=3.6.1",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+rise = { workspace = true }
+snotel = { workspace = true }
+awdb_forecasts = { workspace = true }
+
+
+[tool.pyright]
+# we can't resolve shapely from source so we need to just disable this check
+# reportMissingModuleSource = false
+
+[tool.pytest.ini_options]
+# needed to prevent a deprecation warning; doesnt really affect any behavior
+asyncio_default_fixture_loop_scope = "function"
+addopts = "--strict-markers"
+markers = [
+    "upstream: marks tests that test upstream behavior outside of our control"
+]
+
+[tool.coverage.run]
+# don't include tests 
+omit = [
+    "**/*_test.py"
+]

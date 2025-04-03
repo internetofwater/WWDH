@@ -1,0 +1,49 @@
+# Copyright 2025 Lincoln Institute of Land Policy
+# SPDX-License-Identifier: MIT
+
+services:
+  redis:
+    image: redislabs/redismod
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  pygeoapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rise-pygeoapi
+    ports:
+      # if launched with entrypoint.sh, pygeoapi runs on port 80
+      # - "5000:80"
+      # if launched with `pygeoapi serve`, pygeoapi runs on port 5000
+      - "5000:5000"
+    profiles:
+      - production
+
+    environment:
+      # Need to set these env vars for the custom entrypoint
+      - PYGEOAPI_CONFIG=/pygeoapi/local.config.yml
+      - PYGEOAPI_OPENAPI=/pygeoapi/local.openapi.yml
+      - REDIS_HOST=redis
+      - OTEL_SDK_DISABLED=${OTEL_SDK_DISABLED:-false}
+    depends_on:
+      - redis
+
+    volumes:
+      - ./local.config.yml:/pygeoapi/local.config.yml
+      - ./rise/:/pygeoapi/rise/
+
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      # Ports defined here https://www.jaegertracing.io/docs/next-release/getting-started/#all-in-one
+      - "16686:16686" # expose the UI
+      - "4317:4317" # Enable OTLP HTTP port
+    environment:
+      - LOG_LEVEL=debug
+    restart: on-failure
+
+volumes:
+  redis_data:

@@ -1,0 +1,26 @@
+# Copyright 2025 Lincoln Institute of Land Policy
+# SPDX-License-Identifier: MIT
+
+name: Pyright Type Checks
+
+on:
+  push:
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  pyright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install the project
+        run: uv sync --all-extras --dev --all-packages --all-groups
+
+      - name: Run type checks
+        run: uv run pyright

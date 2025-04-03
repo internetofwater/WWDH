@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Starlette",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["pygeoapi.starlette_app:APP", "--reload", "--port", "5000"],
+      "env": {
+        "PYGEOAPI_CONFIG": "${workspaceFolder}/local.config.yml",
+        "PYGEOAPI_OPENAPI": "${workspaceFolder}/local.openapi.yml"
+      },
+      "autoStartBrowser": true
+    }
+  ]
+}
