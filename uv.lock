@@ -6,6 +6,7 @@ requires-python = ">=3.12"
 members = [
     "awdb-com",
     "awdb-forecasts",
+    "cache-buster",
     "com",
     "iodh-integrations",
     "noaa-rfc",
@@ -196,6 +197,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/54/ce/3aced9653aa3b81ae
 wheels = [
     { url = "https://files.pythonhosted.org/packages/3d/e5/32a88f5a95e3d43c2e3ed86fc1ffdb715547a04f95a51d00e1185af63b0c/botocore-1.31.17-py3-none-any.whl", hash = "sha256:6ac34a1d34aa3750e78b77b8596617e2bab938964694d651939dba2cbde2c12b", size = 11066983 },
 ]
+
+[[package]]
+name = "cache-buster"
+version = "0.1.0"
+source = { editable = "packages/cache_buster" }
 
 [[package]]
 name = "certifi"

@@ -1,0 +1,23 @@
+# Copyright 2025 Lincoln Institute of Land Policy
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "cache_buster"
+version = "0.1.0"
+description = "ogc api process for clearing the API cache; used just for development purposes"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cache_buster"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
