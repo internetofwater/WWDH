@@ -39,7 +39,7 @@ repos:
         exclude: "pygeoapi-deployment/templates/.*|dashboard-ui/.*"
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.11.8
+    rev: v0.11.12
     hooks:
       # Run the linter.
       - id: ruff
@@ -49,7 +49,7 @@ repos:
         exclude: pygeoapi-deployment/templates/
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.7.2
+    rev: 0.7.9
     hooks:
       # Update the uv lockfile
       - id: uv-lock
