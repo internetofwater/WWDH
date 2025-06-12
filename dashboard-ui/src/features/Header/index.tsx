@@ -28,14 +28,10 @@ const Header: React.FC = () => {
     const [opened, { toggle }] = useDisclosure(false);
 
     return (
-        <>
-            <Box component="div" className={styles.topBarContainer}>
-                <Paper
-                    radius={0}
-                    shadow="xs"
-                    className={`${styles.topBarPaper} ${styles.logoBarPaper}`}
-                >
-                    <Group justify="space-between" align="center">
+        <Box component="div" className={styles.topBarContainer}>
+            <Paper radius={0} shadow="xs" className={styles.topBarPaper}>
+                <Group justify="space-between" align="center">
+                    <Group gap="xl">
                         <Box component="span" darkHidden>
                             <Image
                                 src={'/BofR-logo-dark.png'}
@@ -56,30 +52,24 @@ const Header: React.FC = () => {
                             <DarkModeToggle />
                         </Suspense>
                     </Group>
-                </Paper>
-            </Box>
-            <Box component="div" className={styles.topBarContainer}>
-                <Paper radius={0} shadow="xs" className={styles.topBarPaper}>
-                    <Group justify="space-between">
-                        <Group gap="xl">
-                            <Region />
-                            <Basin />
-                            {/* Group these so they move together when decreasing screen width */}
-                            <Group>
-                                <Reservoir />
-                                <ClearAll />
-                            </Group>
+                    <Group gap="lg">
+                        <Region />
+                        <Basin />
+                        {/* Group these so they move together when decreasing screen width */}
+                        <Group>
+                            <Reservoir />
+                            <ClearAll />
                         </Group>
-                        <Button variant="default" onClick={toggle}>
-                            Show Filters
-                        </Button>
                     </Group>
-                    <Collapse in={opened}>
-                        <Filters />
-                    </Collapse>
-                </Paper>
-            </Box>
-        </>
+                    <Button variant="default" onClick={toggle}>
+                        Show Filters
+                    </Button>
+                </Group>
+                <Collapse in={opened}>
+                    <Filters />
+                </Collapse>
+            </Paper>
+        </Box>
     );
 };
 
